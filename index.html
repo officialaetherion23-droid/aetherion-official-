@@ -2,17 +2,15 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Aetherion Official Registration</title>
 
 <style>
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:'Segoe UI', Arial, sans-serif;
 }
 
 body{
@@ -21,23 +19,47 @@ color:white;
 overflow:hidden;
 }
 
-/* OPENING */
+/* OVERLAY UNTUK MEMANCING IZIN AUDIO BROWSER */
+#startOverlay {
+position:fixed;
+inset:0;
+background:#020817;
+z-index:10000;
+display:flex;
+justify-content:center;
+align-items:center;
+}
 
+#startBtn {
+padding: 15px 40px;
+font-size: 18px;
+font-weight: bold;
+background: linear-gradient(45deg, #00aaff, #0044ff);
+color: white;
+border: none;
+border-radius: 30px;
+cursor: pointer;
+box-shadow: 0 0 20px #00aaff;
+transition: 0.3s;
+}
+
+#startBtn:hover {
+transform: scale(1.05);
+box-shadow: 0 0 35px #00aaff;
+}
+
+/* OPENING SCENE */
 #opening{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100vh;
-background:
-radial-gradient(circle at center,
-#0d2b5a,
-#020817 70%);
+background: radial-gradient(circle at center, #0d2b5a, #020817 70%);
 overflow:hidden;
 z-index:9999;
+display: none; 
 }
-
-/* Awan */
 
 .cloud{
 position:absolute;
@@ -49,26 +71,13 @@ border-radius:100px;
 animation:cloudMove 8s infinite alternate;
 }
 
-.cloud1{
-top:15%;
-left:-100px;
-}
-
-.cloud2{
-top:30%;
-right:-100px;
-}
+.cloud1{ top:15%; left:-100px; }
+.cloud2{ top:30%; right:-100px; }
 
 @keyframes cloudMove{
-from{
-transform:translateX(0);
+from{ transform:translateX(0); }
+to{ transform:translateX(40px); }
 }
-to{
-transform:translateX(40px);
-}
-}
-
-/* Cahaya */
 
 .light{
 position:absolute;
@@ -77,15 +86,9 @@ left:50%;
 transform:translateX(-50%);
 width:250px;
 height:100%;
-background:linear-gradient(
-to bottom,
-rgba(255,255,255,.7),
-rgba(0,170,255,.05)
-);
+background:linear-gradient(to bottom, rgba(255,255,255,.7), rgba(0,170,255,.05));
 filter:blur(25px);
 }
-
-/* Malaikat */
 
 #angel{
 position:absolute;
@@ -94,36 +97,24 @@ left:50%;
 transform:translateX(-50%);
 top:-500px;
 opacity:0;
-filter:
-drop-shadow(0 0 20px white)
-drop-shadow(0 0 50px #00aaff);
+filter: drop-shadow(0 0 20px white) drop-shadow(0 0 50px #00aaff);
+}
+
+.angelDownAnim {
 animation:angelDown 3s forwards;
 }
 
 @keyframes angelDown{
-from{
-top:-500px;
-opacity:0;
-}
-to{
-top:70px;
-opacity:1;
-}
+from{ top:-500px; opacity:0; }
+to{ top:70px; opacity:1; }
 }
 
 @keyframes angelUp{
-from{
-top:70px;
-opacity:1;
-}
-to{
-top:-500px;
-opacity:0;
-}
+from{ top:70px; opacity:1; }
+to{ top:-500px; opacity:0; }
 }
 
-/* Tebasan */
-
+/* TEBASAN */
 #slash{
 position:absolute;
 top:240px;
@@ -132,49 +123,45 @@ width:0;
 height:8px;
 background:white;
 transform:translateX(-50%) rotate(-20deg);
-box-shadow:
-0 0 20px white,
-0 0 50px white,
-0 0 100px white;
-animation:slash 1s 3s forwards;
+box-shadow: 0 0 20px white, 0 0 50px white, 0 0 100px white;
+opacity:0;
+}
+
+.showSlash{
+animation:slash 0.6s forwards;
 }
 
 @keyframes slash{
-from{
-width:0;
-}
-to{
-width:800px;
-}
+0%{ width:0; opacity:1; }
+100%{ width:800px; opacity:1; }
 }
 
-/* Flash */
+.hideSlash{
+animation:hideSlash 0.3s forwards;
+}
 
+@keyframes hideSlash{
+from{ opacity:1; }
+to{ opacity:0; }
+}
+
+/* FLASH */
 #flash{
 position:absolute;
 width:100%;
 height:100%;
 background:white;
 opacity:0;
+z-index: 99;
 }
 
-.flashActive{
-animation:flash .6s forwards;
-}
+.flashActive{ animation:flash .6s forwards; }
 
 @keyframes flash{
-0%{
-opacity:0;
+0%{ opacity:0; }
+50%{ opacity:1; }
+100%{ opacity:0; }
 }
-50%{
-opacity:1;
-}
-100%{
-opacity:0;
-}
-}
-
-/* Logo */
 
 #aetherion{
 position:absolute;
@@ -186,26 +173,13 @@ font-weight:bold;
 letter-spacing:4px;
 color:#00aaff;
 opacity:0;
-text-shadow:
-0 0 10px #00aaff,
-0 0 30px #00aaff,
-0 0 60px #00aaff;
+text-shadow: 0 0 10px #00aaff, 0 0 30px #00aaff, 0 0 60px #00aaff;
 }
 
-.showLogo{
-animation:showLogo 1s forwards;
-}
+.showLogo{ animation:showLogo 1s forwards; }
+@keyframes showLogo{ to{ opacity:1; } }
 
-@keyframes showLogo{
-to{
-opacity:1;
-}
-}
-
-.shake{
-animation:shake .3s infinite;
-}
-
+.shake{ animation:shake .3s infinite; }
 @keyframes shake{
 0%{transform:translateX(0);}
 25%{transform:translateX(-2px);}
@@ -213,8 +187,6 @@ animation:shake .3s infinite;
 75%{transform:translateX(-2px);}
 100%{transform:translateX(0);}
 }
-
-/* Pendaftaran */
 
 #registerTitle{
 position:absolute;
@@ -228,87 +200,164 @@ color:white;
 transform:translateY(80px);
 }
 
-.showRegister{
-animation:showRegister 1s forwards;
-}
+.showRegister{ animation:showRegister 1s forwards; }
+@keyframes showRegister{ to{ opacity:1; transform:translateY(0); } }
 
-@keyframes showRegister{
-to{
-opacity:1;
-transform:translateY(0);
-}
-}
 
-/* FORM */
-
+/* FORM & REGISTER PAGE */
 #mainContent{
 display:none;
-padding:25px;
-max-width:600px;
+padding:20px;
+max-width:650px;
 margin:auto;
 }
 
 .formBox{
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.1);
-border-radius:20px;
-padding:25px;
-backdrop-filter:blur(10px);
-margin-top:20px;
+background:rgba(15, 23, 42, 0.6);
+border:1px solid rgba(255,255,255,.08);
+border-radius:24px;
+padding:30px;
+backdrop-filter:blur(15px);
+margin-top:40px;
+box-shadow: 0 20px 50px rgba(0,0,0,0.4);
 }
 
-h2{
+h2.main-title{
 text-align:center;
 color:#00aaff;
-margin-bottom:20px;
+font-size: 30px;
+letter-spacing: 2px;
+margin-bottom:5px;
+text-shadow: 0 0 15px rgba(0,170,255,0.3);
 }
 
-input,select{
+.subtitle{
+text-align: center;
+font-size: 13px;
+color: #88a4e6;
+margin-bottom: 25px;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+
+/* VISUAL FOUNDER (Diobrak-abrik menjadi Admin Terpercaya) */
+.founders-container {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 12px;
+margin-bottom: 25px;
+}
+
+.founder-card {
+background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(0,170,255,0.05));
+border: 1px solid rgba(0, 170, 255, 0.15);
+border-radius: 14px;
+padding: 12px 5px;
+text-align: center;
+transition: 0.3s;
+}
+
+.founder-card:hover {
+border-color: #00aaff;
+box-shadow: 0 0 15px rgba(0, 170, 255, 0.2);
+transform: translateY(-2px);
+}
+
+.founder-role {
+font-size: 9px;
+color: #00aaff;
+text-transform: uppercase;
+letter-spacing: 1px;
+margin-bottom: 4px;
+font-weight: bold;
+}
+
+.founder-name {
+font-weight: bold;
+font-size: 15px;
+color: white;
+letter-spacing: 1px;
+text-shadow: 0 0 8px rgba(255,255,255,0.2);
+}
+
+input, select{
 width:100%;
-padding:15px;
-margin-bottom:15px;
-border:none;
+padding:16px;
+margin-bottom:16px;
+border:1px solid rgba(255,255,255,0.05);
 outline:none;
-border-radius:10px;
-background:#0f172a;
+border-radius:12px;
+background:#090f1d;
 color:white;
+transition: 0.3s;
+}
+
+input:focus, select:focus {
+border-color: #00aaff;
+box-shadow: 0 0 10px rgba(0, 170, 255, 0.2);
 }
 
 button{
 width:100%;
-padding:15px;
+padding:16px;
 border:none;
-border-radius:10px;
+border-radius:12px;
 cursor:pointer;
 font-weight:bold;
-margin-top:10px;
+font-size: 15px;
+transition: 0.3s;
 }
 
 .btnDaftar{
-background:#00aaff;
+background: linear-gradient(45deg, #0077ff, #00aaff);
 color:white;
+box-shadow: 0 4px 15px rgba(0, 170, 255, 0.3);
 }
 
-.btnGroup{
-background:white;
-color:#000;
+.btnDaftar:hover{
+transform: scale(1.02);
+box-shadow: 0 6px 20px rgba(0, 170, 255, 0.5);
+}
+
+.btnDaftar:disabled{
+background: #555;
+cursor: not-allowed;
+box-shadow: none;
+transform: scale(1);
 }
 
 .notice{
-margin-top:20px;
-font-size:14px;
+margin-top:25px;
+font-size:13px;
 line-height:1.6;
 text-align:center;
-color:#ccc;
+color:#94a3b8;
+border-top: 1px solid rgba(255,255,255,0.05);
+padding-top: 15px;
 }
 
 .menu{
 position:fixed;
-top:15px;
-left:15px;
-font-size:30px;
+top:20px;
+left:20px;
+font-size:26px;
 cursor:pointer;
 z-index:999;
+background: rgba(15, 23, 42, 0.6);
+width: 45px;
+height: 45px;
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: 50px;
+border: 1px solid rgba(255,255,255,0.1);
+backdrop-filter: blur(5px);
+transition: 0.3s;
+}
+
+.menu:hover {
+background: #00aaff;
+color: white;
 }
 
 #rules{
@@ -318,172 +367,221 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.95);
-padding:30px;
+background:rgba(2, 8, 23, 0.98);
+padding:40px 25px;
 overflow:auto;
 z-index:1000;
 }
 
 .close{
-font-size:30px;
+font-size:35px;
 cursor:pointer;
 float:right;
+color: #ef4444;
 }
 
+#rules h2 {
+margin-bottom: 30px;
+color: #ef4444;
+}
+
+#rules p {
+background: rgba(255,255,255,0.02);
+padding: 15px;
+border-radius: 10px;
+margin-bottom: 12px;
+border-left: 4px solid #00aaff;
+font-size: 15px;
+}
 </style>
 </head>
 
 <body>
 
+<div id="startOverlay">
+    <button id="startBtn">MASUK AETHERION</button>
+</div>
+
 <div id="opening">
-
-<div class="cloud cloud1"></div>
-<div class="cloud cloud2"></div>
-
-<div class="light"></div>
-
-<img src="angel.png" id="angel">
-
-<div id="slash"></div>
-
-<div id="flash"></div>
-
-<div id="aetherion">
-AETHERION
+    <div class="cloud cloud1"></div>
+    <div class="cloud cloud2"></div>
+    <div class="light"></div>
+    <img src="angel.png" id="angel" alt="Aetherion Angel">
+    <div id="slash"></div>
+    <div id="flash"></div>
+    <div id="aetherion">AETHERION</div>
+    <div id="registerTitle">PENDAFTARAN</div>
 </div>
 
-<div id="registerTitle">
-PENDAFTARAN
-</div>
+<audio id="slashSound" preload="auto">
+    <source src="slash.mp3" type="audio/mpeg">
+</audio>
 
-</div>
-
-<div class="menu" onclick="openRules()">
-☰
-</div>
+<div class="menu" onclick="openRules()">☰</div>
 
 <div id="rules">
-<div class="close" onclick="closeRules()">✕</div>
-
-<h2>RULES AETHERION</h2>
-
-<p>1. Dilarang melakukan penipuan.</p>
-<p>2. Hormati seluruh anggota.</p>
-<p>3. Dilarang spam.</p>
-<p>4. Gunakan bahasa yang sopan.</p>
-<p>5. Wajib menjaga kenyamanan bersama.</p>
-<p>6. Admin berhak mengambil tindakan.</p>
-<p>7. Pelanggaran berat dapat menyebabkan blacklist.</p>
-
+    <div class="close" onclick="closeRules()">✕</div>
+    <h2>RULES AETHERION OFFICIAL</h2>
+    <p>1. Dilarang keras melakukan segala bentuk tindakan penipuan (Scam).</p>
+    <p>2. Hormati dan hargai seluruh jajaran pengurus serta sesama anggota group.</p>
+    <p>3. Dilarang melakukan spam chat, spam link, ataupun sara/pornografi.</p>
+    <p>4. Selalu gunakan bahasa yang sopan dan beretika dalam bertransaksi.</p>
+    <p>5. Wajib menjaga keamanan, kenyamanan, dan kerahasiaan data bersama.</p>
+    <p>6. Admin berhak mengambil tindakan tegas terhadap pelanggar.</p>
+    <p>7. Pelanggaran berat akan berakibat pada pemblokiran permanen (Blacklist).</p>
 </div>
 
 <div id="mainContent">
+    <div class="formBox">
+        <h2 class="main-title">Aetherion Official</h2>
+        <div class="subtitle">Registration Hub</div>
+        
+        <div class="founders-container">
+            <div class="founder-card">
+                <div class="founder-role">Admin Terpercaya</div>
+                <div class="founder-name">HANZ</div>
+            </div>
+            <div class="founder-card">
+                <div class="founder-role">Admin Terpercaya</div>
+                <div class="founder-name">ZARWO</div>
+            </div>
+            <div class="founder-card">
+                <div class="founder-role">Admin Terpercaya</div>
+                <div class="founder-name">PRESSCIAN</div>
+            </div>
+        </div>
 
-<div class="formBox">
+        <input type="text" id="nama" placeholder="Nama Lengkap">
+        <input type="number" id="umur" placeholder="Umur (Angka)">
+        <input type="date" id="tanggal">
 
-<h2>Aetherion Official</h2>
+        <select id="status">
+            <option value="Penjual">Penjual / Seller</option>
+            <option value="Pembeli">Pembeli / Buyer</option>
+        </select>
 
-<input type="text" id="nama" placeholder="Nama">
+        <button class="btnDaftar" id="btnSubmit" onclick="daftar()">
+            SUBMIT PENDAFTARAN
+        </button>
 
-<input type="text" id="umur" placeholder="Umur">
-
-<input type="date" id="tanggal">
-
-<select id="status">
-<option>Penjual</option>
-<option>Pembeli</option>
-</select>
-
-<button class="btnDaftar" onclick="daftar()">
-DAFTAR
-</button>
-
-<button class="btnGroup"
-onclick="window.open('https://chat.whatsapp.com/LINK-GRUP-KAMU')">
-MASUK GRUP
-</button>
-
-<div class="notice">
-
-Jika sudah diisi harap masuk dan patuhi rules yang ada pada menu ☰.
-
-Harap dibaca demi kenyamanan bersama.
-
-Kami berkomitmen untuk menciptakan transaksi yang aman dan terpercaya serta akan membantu menyelesaikan masalah yang masih berada dalam jangkauan kami.
-
-</div>
-
-</div>
-
+        <div class="notice">
+            Setelah klik Submit, data Anda akan diverifikasi oleh sistem dan Anda akan langsung diarahkan ke grup utama.<br><br>
+            Kami berkomitmen penuh membangun ekosistem transaksi digital yang aman, transparan, dan terpercaya di bawah pengawasan Admin.
+        </div>
+    </div>
 </div>
 
 <script>
+const startOverlay = document.getElementById("startOverlay");
+const startBtn = document.getElementById("startBtn");
+const opening = document.getElementById("opening");
+const angel = document.getElementById("angel");
+const slash = document.getElementById("slash");
+const flash = document.getElementById("flash");
+const logo = document.getElementById("aetherion");
+const reg = document.getElementById("registerTitle");
+const sound = document.getElementById("slashSound");
 
-const angel=document.getElementById("angel");
-const flash=document.getElementById("flash");
-const logo=document.getElementById("aetherion");
-const reg=document.getElementById("registerTitle");
+// JALANKAN ALUR ANIMASI SAAT KLIK TOMBOL START
+startBtn.addEventListener("click", () => {
+    startOverlay.style.display = "none";
+    opening.style.display = "block";
+    
+    sound.load();
+    angel.classList.add("angelDownAnim");
 
-setTimeout(()=>{
-flash.classList.add("flashActive");
-},3900);
+    setTimeout(() => {
+        slash.classList.add("showSlash");
+        sound.play().catch((err) => { console.log("Audio diblokir browser: ", err) });
+    }, 3000);
 
-setTimeout(()=>{
-logo.classList.add("showLogo");
-},4300);
+    setTimeout(() => {
+        slash.classList.remove("showSlash");
+        slash.classList.add("hideSlash");
+    }, 3600);
 
-setTimeout(()=>{
-angel.style.animation="angelUp 2s forwards";
-},5000);
+    setTimeout(() => { flash.classList.add("flashActive"); }, 3900);
+    setTimeout(() => { logo.classList.add("showLogo"); }, 4300);
+    setTimeout(() => { angel.style.animation = "angelUp 2s forwards"; }, 5000);
+    setTimeout(() => { logo.classList.add("shake"); }, 6500);
+    setTimeout(() => { reg.classList.add("showRegister"); }, 7200);
 
-setTimeout(()=>{
-logo.classList.add("shake");
-},6500);
+    setTimeout(() => {
+        opening.style.display = "none";
+        document.getElementById("mainContent").style.display = "block";
+        document.body.style.overflow = "auto";
+    }, 9500);
+});
 
-setTimeout(()=>{
-reg.classList.add("showRegister");
-},7200);
+// FUNGSI DAFTAR (KIRIM VIA FONNTE KE OWNER & AUTO REDIRECT GROUP)
+async function daftar() {
+    let nama = document.getElementById("nama").value;
+    let umur = document.getElementById("umur").value;
+    let tanggal = document.getElementById("tanggal").value;
+    let status = document.getElementById("status").value;
+    let btnSubmit = document.getElementById("btnSubmit");
 
-setTimeout(()=>{
-document.getElementById("opening").style.display="none";
-document.getElementById("mainContent").style.display="block";
-document.body.style.overflow="auto";
-},9500);
+    if(!nama || !umur || !tanggal){
+        alert("Mohon lengkapi semua baris formulir terlebih dahulu!");
+        return;
+    }
 
-function daftar(){
+    // ================= PENGATURAN API =================
+    const TOKEN_FONNTE = "PNraME177p31iZM9o2Xd";         // Ganti dengan Token API Fonnte Anda
+    const NOMOR_OWNER  = "6287897591086";              // Ganti dengan Nomor WA Anda (Format: 08x atau 628x)
+    const LINK_GRUP    = "https://chat.whatsapp.com/KMECAVkyMJi4vUtvCV8kWP?s=cl&p=a&ilr=1"; // Ganti dengan link grup WA 
+    // ==================================================
 
-let nama=document.getElementById("nama").value;
-let umur=document.getElementById("umur").value;
-let tanggal=document.getElementById("tanggal").value;
-let status=document.getElementById("status").value;
+    let pesan = 
+`🔔 *PENDAFTARAN BARU AETHERION OFFICIAL* 🔔
 
-/* Ganti dengan nomor admin */
-let admin="6281234567890";
+• Nama Pengguna : ${nama}
+• Batasan Umur  : ${umur} Tahun
+• Tanggal Daftar : ${tanggal}
+• Status Akun    : ${status}
 
-let pesan=
-`=== PENDAFTARAN AETHERION ===
+Pendaftar ini telah otomatis diarahkan ke grup utama. Mohon dicek.`;
 
-Nama : ${nama}
-Umur : ${umur}
-Tanggal : ${tanggal}
-Status : ${status}
+    btnSubmit.disabled = true;
+    btnSubmit.innerText = "MENGIRIM DATA...";
 
-Saya telah membaca rules dan siap mematuhi aturan Aetherion Official.`;
+    let myHeaders = new Headers();
+    myHeaders.append("Authorization", TOKEN_FONNTE);
 
-window.open(
-`https://wa.me/${admin}?text=${encodeURIComponent(pesan)}`
-);
+    let formdata = new FormData();
+    formdata.append("target", NOMOR_OWNER);
+    formdata.append("message", pesan);
+    formdata.append("countryCode", "62"); // Default Kode Negara
 
+    let requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: formdata,
+        redirect: 'follow'
+    };
+
+    try {
+        let response = await fetch("https://api.fonnte.com/send", requestOptions);
+        let result = await response.json();
+        
+        if (result.status) {
+            alert("Pendaftaran Berhasil! Anda akan segera diarahkan ke Grup Utama.");
+            window.location.href = LINK_GRUP; // Auto redirect ke grup
+        } else {
+            alert("Terjadi kesalahan saat verifikasi: " + result.reason);
+            btnSubmit.disabled = false;
+            btnSubmit.innerText = "SUBMIT PENDAFTARAN";
+        }
+    } catch (error) {
+        console.error('Error Fonnte:', error);
+        alert("Koneksi ke server pendaftaran gagal. Silakan coba lagi.");
+        btnSubmit.disabled = false;
+        btnSubmit.innerText = "SUBMIT PENDAFTARAN";
+    }
 }
 
-function openRules(){
-document.getElementById("rules").style.display="block";
-}
-
-function closeRules(){
-document.getElementById("rules").style.display="none";
-}
-
+function openRules() { document.getElementById("rules").style.display = "block"; }
+function closeRules() { document.getElementById("rules").style.display = "none"; }
 </script>
 
 </body>
