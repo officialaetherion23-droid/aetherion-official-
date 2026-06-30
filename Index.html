@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Aetherion Official Registration</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#020817;
+color:white;
+overflow:hidden;
+}
+
+/* OPENING */
+
+#opening{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:
+radial-gradient(circle at center,
+#0d2b5a,
+#020817 70%);
+overflow:hidden;
+z-index:9999;
+}
+
+/* Awan */
+
+.cloud{
+position:absolute;
+width:400px;
+height:120px;
+background:rgba(255,255,255,.12);
+filter:blur(25px);
+border-radius:100px;
+animation:cloudMove 8s infinite alternate;
+}
+
+.cloud1{
+top:15%;
+left:-100px;
+}
+
+.cloud2{
+top:30%;
+right:-100px;
+}
+
+@keyframes cloudMove{
+from{
+transform:translateX(0);
+}
+to{
+transform:translateX(40px);
+}
+}
+
+/* Cahaya */
+
+.light{
+position:absolute;
+top:0;
+left:50%;
+transform:translateX(-50%);
+width:250px;
+height:100%;
+background:linear-gradient(
+to bottom,
+rgba(255,255,255,.7),
+rgba(0,170,255,.05)
+);
+filter:blur(25px);
+}
+
+/* Malaikat */
+
+#angel{
+position:absolute;
+width:320px;
+left:50%;
+transform:translateX(-50%);
+top:-500px;
+opacity:0;
+filter:
+drop-shadow(0 0 20px white)
+drop-shadow(0 0 50px #00aaff);
+animation:angelDown 3s forwards;
+}
+
+@keyframes angelDown{
+from{
+top:-500px;
+opacity:0;
+}
+to{
+top:70px;
+opacity:1;
+}
+}
+
+@keyframes angelUp{
+from{
+top:70px;
+opacity:1;
+}
+to{
+top:-500px;
+opacity:0;
+}
+}
+
+/* Tebasan */
+
+#slash{
+position:absolute;
+top:240px;
+left:50%;
+width:0;
+height:8px;
+background:white;
+transform:translateX(-50%) rotate(-20deg);
+box-shadow:
+0 0 20px white,
+0 0 50px white,
+0 0 100px white;
+animation:slash 1s 3s forwards;
+}
+
+@keyframes slash{
+from{
+width:0;
+}
+to{
+width:800px;
+}
+}
+
+/* Flash */
+
+#flash{
+position:absolute;
+width:100%;
+height:100%;
+background:white;
+opacity:0;
+}
+
+.flashActive{
+animation:flash .6s forwards;
+}
+
+@keyframes flash{
+0%{
+opacity:0;
+}
+50%{
+opacity:1;
+}
+100%{
+opacity:0;
+}
+}
+
+/* Logo */
+
+#aetherion{
+position:absolute;
+width:100%;
+text-align:center;
+top:40%;
+font-size:65px;
+font-weight:bold;
+letter-spacing:4px;
+color:#00aaff;
+opacity:0;
+text-shadow:
+0 0 10px #00aaff,
+0 0 30px #00aaff,
+0 0 60px #00aaff;
+}
+
+.showLogo{
+animation:showLogo 1s forwards;
+}
+
+@keyframes showLogo{
+to{
+opacity:1;
+}
+}
+
+.shake{
+animation:shake .3s infinite;
+}
+
+@keyframes shake{
+0%{transform:translateX(0);}
+25%{transform:translateX(-2px);}
+50%{transform:translateX(2px);}
+75%{transform:translateX(-2px);}
+100%{transform:translateX(0);}
+}
+
+/* Pendaftaran */
+
+#registerTitle{
+position:absolute;
+width:100%;
+text-align:center;
+top:53%;
+font-size:28px;
+letter-spacing:4px;
+opacity:0;
+color:white;
+transform:translateY(80px);
+}
+
+.showRegister{
+animation:showRegister 1s forwards;
+}
+
+@keyframes showRegister{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* FORM */
+
+#mainContent{
+display:none;
+padding:25px;
+max-width:600px;
+margin:auto;
+}
+
+.formBox{
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.1);
+border-radius:20px;
+padding:25px;
+backdrop-filter:blur(10px);
+margin-top:20px;
+}
+
+h2{
+text-align:center;
+color:#00aaff;
+margin-bottom:20px;
+}
+
+input,select{
+width:100%;
+padding:15px;
+margin-bottom:15px;
+border:none;
+outline:none;
+border-radius:10px;
+background:#0f172a;
+color:white;
+}
+
+button{
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+margin-top:10px;
+}
+
+.btnDaftar{
+background:#00aaff;
+color:white;
+}
+
+.btnGroup{
+background:white;
+color:#000;
+}
+
+.notice{
+margin-top:20px;
+font-size:14px;
+line-height:1.6;
+text-align:center;
+color:#ccc;
+}
+
+.menu{
+position:fixed;
+top:15px;
+left:15px;
+font-size:30px;
+cursor:pointer;
+z-index:999;
+}
+
+#rules{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.95);
+padding:30px;
+overflow:auto;
+z-index:1000;
+}
+
+.close{
+font-size:30px;
+cursor:pointer;
+float:right;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="opening">
+
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+
+<div class="light"></div>
+
+<img src="angel.png" id="angel">
+
+<div id="slash"></div>
+
+<div id="flash"></div>
+
+<div id="aetherion">
+AETHERION
+</div>
+
+<div id="registerTitle">
+PENDAFTARAN
+</div>
+
+</div>
+
+<div class="menu" onclick="openRules()">
+☰
+</div>
+
+<div id="rules">
+<div class="close" onclick="closeRules()">✕</div>
+
+<h2>RULES AETHERION</h2>
+
+<p>1. Dilarang melakukan penipuan.</p>
+<p>2. Hormati seluruh anggota.</p>
+<p>3. Dilarang spam.</p>
+<p>4. Gunakan bahasa yang sopan.</p>
+<p>5. Wajib menjaga kenyamanan bersama.</p>
+<p>6. Admin berhak mengambil tindakan.</p>
+<p>7. Pelanggaran berat dapat menyebabkan blacklist.</p>
+
+</div>
+
+<div id="mainContent">
+
+<div class="formBox">
+
+<h2>Aetherion Official</h2>
+
+<input type="text" id="nama" placeholder="Nama">
+
+<input type="text" id="umur" placeholder="Umur">
+
+<input type="date" id="tanggal">
+
+<select id="status">
+<option>Penjual</option>
+<option>Pembeli</option>
+</select>
+
+<button class="btnDaftar" onclick="daftar()">
+DAFTAR
+</button>
+
+<button class="btnGroup"
+onclick="window.open('https://chat.whatsapp.com/LINK-GRUP-KAMU')">
+MASUK GRUP
+</button>
+
+<div class="notice">
+
+Jika sudah diisi harap masuk dan patuhi rules yang ada pada menu ☰.
+
+Harap dibaca demi kenyamanan bersama.
+
+Kami berkomitmen untuk menciptakan transaksi yang aman dan terpercaya serta akan membantu menyelesaikan masalah yang masih berada dalam jangkauan kami.
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const angel=document.getElementById("angel");
+const flash=document.getElementById("flash");
+const logo=document.getElementById("aetherion");
+const reg=document.getElementById("registerTitle");
+
+setTimeout(()=>{
+flash.classList.add("flashActive");
+},3900);
+
+setTimeout(()=>{
+logo.classList.add("showLogo");
+},4300);
+
+setTimeout(()=>{
+angel.style.animation="angelUp 2s forwards";
+},5000);
+
+setTimeout(()=>{
+logo.classList.add("shake");
+},6500);
+
+setTimeout(()=>{
+reg.classList.add("showRegister");
+},7200);
+
+setTimeout(()=>{
+document.getElementById("opening").style.display="none";
+document.getElementById("mainContent").style.display="block";
+document.body.style.overflow="auto";
+},9500);
+
+function daftar(){
+
+let nama=document.getElementById("nama").value;
+let umur=document.getElementById("umur").value;
+let tanggal=document.getElementById("tanggal").value;
+let status=document.getElementById("status").value;
+
+/* Ganti dengan nomor admin */
+let admin="6281234567890";
+
+let pesan=
+`=== PENDAFTARAN AETHERION ===
+
+Nama : ${nama}
+Umur : ${umur}
+Tanggal : ${tanggal}
+Status : ${status}
+
+Saya telah membaca rules dan siap mematuhi aturan Aetherion Official.`;
+
+window.open(
+`https://wa.me/${admin}?text=${encodeURIComponent(pesan)}`
+);
+
+}
+
+function openRules(){
+document.getElementById("rules").style.display="block";
+}
+
+function closeRules(){
+document.getElementById("rules").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
